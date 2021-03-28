@@ -86,8 +86,11 @@ app.post('/game', (req, res) => {
 
     pgClient.query('insert into games (name, price) values ($1, $2) returning id;', [name, price], (err, result) => {
         if(err) throw error;
+        
         const id = result.rows[0].id;
-        redisClient.setex(id, 600, JSON.stringify([{id: id, ...req.body}]));
+        const textId = `/game/:${id}`;
+
+        redisClient.set(textId, JSON.stringify([{id: id, ...req.body}]), 'EX', 60 * 60 * 24);
         res.status(201).json({
             msg: 'Success. You add record to db.',
             data: {id: result.rows[0].id, name: name, price: price}

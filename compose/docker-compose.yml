@@ -25,4 +25,4 @@ services:
       - REDIS_HOST=myredis 
       - POSTGRES_HOST=mypostgres 
     ports: 
-      - '9090:9000'
+      - '9090:9000' #{local}:{server}

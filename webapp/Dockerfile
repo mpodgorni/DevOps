@@ -4,8 +4,8 @@ WORKDIR /opt/myapp
 
 COPY ./package.json ./
 
-RUN npm install 
+RUN yarn install 
 
 COPY ./ ./
 
-CMD [ "npm", "start" ]
+CMD ["node", "index.js"]

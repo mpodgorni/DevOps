@@ -39,10 +39,11 @@ pgClient
 });
 
 app.get("/", (req, res) => {
-    res.send("Hello World")
+    res.send("Hello World");
 });
 
-const PORT = 5000
+const PORT = 5000;
+
 app.listen(PORT, () => {
     console.log(`API listening on port ${PORT}`);
 });

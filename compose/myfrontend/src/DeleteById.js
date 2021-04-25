@@ -6,7 +6,7 @@ const DeleteById = (props) => {
 	function deleteGameById() {
 		let gameId = prompt('Podaj id gry:');
 		if (gameId == null) { return };
-		axios.delete(`http://localhost:9090/game/${gameId}`)
+		axios.delete(`/api/game/${gameId}`)
 			.then(response => response)
 			.catch(error => console.log(error));
 	}

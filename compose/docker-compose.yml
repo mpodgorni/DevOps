@@ -25,4 +25,18 @@ services:
       - REDIS_HOST=myredis 
       - POSTGRES_HOST=mypostgres 
     ports: 
-      - '9090:9000' #{local}:{server}
+      - '5000:4000' #{local}:{server}
+  mynginx: 
+    restart: always
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./mynginx
+    ports: 
+      - '9090:80'
+  myfrontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./myfrontend
+    volumes:
+      - /opt/app/node_modules
+      - ./myfrontend:/opt/app

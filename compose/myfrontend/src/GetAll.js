@@ -4,7 +4,7 @@ import axios from 'axios';
 const GetAll = (props) => {
 
 	function getAllGames() {
-		axios.get('http://localhost:9090/games')
+		axios.get('/api/games')
 			.then(response => response)
 			.then(data => props.handlerParentChange(data.data))
 			.catch(error => console.log(error));

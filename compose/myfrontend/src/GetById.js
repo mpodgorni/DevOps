@@ -6,7 +6,7 @@ const GetById = (props) => {
 	function getGameById() {
 		let gameId = prompt('Podaj id gry:');
 		if (gameId == null) { return };
-		axios.get(`http://localhost:9090/game/${gameId}`)
+		axios.get(`/api/game/${gameId}`)
 			.then(response => response)
 			.then(data => props.handlerParentChange(data.data.data))
 			.catch(error => console.log(error));

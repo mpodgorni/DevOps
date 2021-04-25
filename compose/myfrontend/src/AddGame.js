@@ -8,7 +8,7 @@ const AddGame = (props) => {
 		if (gameName.length == 0) { return };
 		let gamePrice = prompt('Podaj cenę gry:');
 		if (gamePrice.length == 0) { return };
-		axios.post('http://localhost:9090/game', {
+		axios.post('/api/game', {
 				name: gameName,
 				price: gamePrice
 			})

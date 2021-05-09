@@ -103,8 +103,22 @@ app.delete('/game/:id', (req, res) => {
 
     pgClient.query('delete from games where id = $1;', [id], (err, result) => {
         if(err) throw error;
+
         res.status(201).json({
             msg: 'OK. You delete record from db.',
+        });
+    })
+});
+
+app.put('/game/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const { name } = req.body;
+
+    pgClient.query(`update games set name = $1 where id = ${id};`, [name], (err, result) => {
+        if(err) throw error;
+
+        res.status(201).json({
+            msg: 'OK. You update record in db.'
         });
     })
 });

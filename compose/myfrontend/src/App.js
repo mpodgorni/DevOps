@@ -6,13 +6,14 @@ import GetAll from './GetAll.js';
 import GetById from './GetById.js';
 import AddGame from './AddGame.js';
 import DeleteById from './DeleteById.js';
+import UpdateNameById from './UpdateNameById.js';
 
 function App() {
 
   const [games, setGames] = useState(null);
 
   useEffect(() => {
-    
+
   }, []);
 
   return (
@@ -23,8 +24,8 @@ function App() {
           <tr><th>Id</th><th>Nazwa</th><th>Cena</th></tr>
         </thead>
         <tbody>
-          {games 
-            ? games.map( game => (<tr key={game.id} align='center'><td>{game.id}</td><td>{game.name}</td><td>{game.price}</td></tr>) ) 
+          {games
+            ? games.map( game => (<tr key={game.id} align='center'><td>{game.id}</td><td>{game.name}</td><td>{game.price}</td></tr>) )
             : <tr><td colSpan='3'>Brak gier w bazie.</td></tr>}
         </tbody>
       </table>
@@ -33,6 +34,7 @@ function App() {
       <GetById handlerParentChange={setGames} />
       <AddGame handlerParentChange={setGames} />
       <DeleteById handlerParentChange={setGames} />
+      <UpdateNameById handlerParentChange={setGames} />
     </div>
   );
 

@@ -6,9 +6,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 5000
-      targetPort: 5000
-      nodePort: 31100
+    - port: 4000
+      targetPort: 4000
+      nodePort: 31000
   
   selector:
     component: backend 

@@ -11,8 +11,8 @@ spec:
     metadata:
       name: mypostgres-pod
       labels:
-        app: mypostgres
         type: db
+        app: mypostgres
     spec:
       containers:
         - name: mypostgres-container
@@ -27,11 +27,6 @@ spec:
                 configMapKeyRef:
                   name: mypostgres-config
                   key: PGHOST
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: myapp-secret
-                  key: PGPASSWORD
             - name: POSTGRES_DB
               valueFrom: 
                 configMapKeyRef:
@@ -42,11 +37,11 @@ spec:
                 configMapKeyRef:
                   name: mypostgres-config
                   key: PGUSER
-            - name: POSTGRES_PORT
-              valueFrom: 
-                configMapKeyRef:
-                  name: mypostgres-config
-                  key: PGPORT
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mypostgres-secret
+                  key: PGPASSWORD
       volumes: 
       - name: postgresvolume
         persistentVolumeClaim:

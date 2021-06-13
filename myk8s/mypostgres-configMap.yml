@@ -7,4 +7,3 @@ data:
   PGDATABASE: postgres
   PGUSER: postgres
   PGHOST: mypostgres-clusterip
-  PGPORT: '5432'

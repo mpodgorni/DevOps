@@ -7,10 +7,13 @@ node_modules
 /build
 
 # test
+/k8s
+/mynginx
 /mynginx2
 
 # database
 /postgresdata
+/k8spv
 
 # trash
 /trash

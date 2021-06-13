@@ -8,6 +8,7 @@ spec:
   ports:
     - port: 4000
       targetPort: 4000
+      nodePort: 31000
   
   selector:
     component: backend 

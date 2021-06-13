@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mybackend-node-port
+  name: mynginx-node-port
 
 spec:
   type: NodePort
   ports:
-    - port: 4000
-      targetPort: 4000
+    - port: 80
+      targetPort: 80
   
   selector:
-    component: backend 
+    component: web 
     app: my-app

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mybackend-deployment
+  labels:
+    component: backend
+    app: my-app
+
+spec:
+  template:
+    metadata:
+      name: mybackend-pod
+      labels:
+        component: backend
+        app: my-app
+    spec:
+      containers:
+        - name: mybackend-container
+          image: devipod/mybackend
+          env:
+            - name: PGHOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mypostgres-config
+                  key: PGHOST
+            - name: PGDATABASE
+              valueFrom: 
+                configMapKeyRef:
+                  name: mypostgres-config
+                  key: PGDATABASE
+            - name: PGUSER
+              valueFrom: 
+                configMapKeyRef:
+                  name: mypostgres-config
+                  key: PGUSER
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mypostgres-secret
+                  key: PGPASSWORD
+  replicas: 3
+  selector: 
+    matchLabels: 
+      app: my-app
+      component: backend

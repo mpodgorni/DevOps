@@ -42,26 +42,16 @@ app.get("/game/:id", (req, res) => {
         const id = parseInt(req.params.id);
         const textId = `/game/:${id}`;
         
-        redisClient.get(textId, async (error, result) => {
-            if(result) {
-                return res.status(200).send({
-                    data: JSON.parse(result),
-                    msg: 'Cache.'
-                })
-            } else {
-                pgClient.query('select * from games where id = $1;', [id], (err, result) => {
-                    if(err) throw error;
+        pgClient.query('select * from games where id = $1;', [id], (err, result) => {
+            if(err) throw error;
 
-                    const rows = JSON.stringify(result.rows);
-                    console.log(`id: ${id}, data: ${rows}`);
+            const rows = JSON.stringify(result.rows);
+            console.log(`id: ${id}, data: ${rows}`);
 
-                    redisClient.set(textId, rows, 'EX', 60 * 60 * 24);
-                    return res.status(200).send({
-                        data: JSON.parse(rows),
-                        msg: 'Server.'
-                    })
-                });
-            }
+            return res.status(200).send({
+                data: JSON.parse(rows),
+                msg: 'Server.'
+            })
         });
     } catch (error) {
         console.log(error);
@@ -77,7 +67,6 @@ app.post('/game', (req, res) => {
         const id = result.rows[0].id;
         const textId = `/game/:${id}`;
 
-        redisClient.set(textId, JSON.stringify([{id: id, ...req.body}]), 'EX', 60 * 60 * 24);
         res.status(201).json({
             msg: 'Success. You add record to db.',
             data: {id: result.rows[0].id, name: name, price: price}

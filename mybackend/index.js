@@ -7,25 +7,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const redis = require('redis');
-const { request } = require('express');
-
-const redisClient = redis.createClient({
-    host: "myredis", 
-    port: 6379
-    //retry_strategy: () => 1000
-});
-
-redisClient.on('connect', () => {
-    console.log("Connected to RedisClient");
-});
-
 const { Pool } = require('pg');
 const pgClient = new Pool({
-    user: "postgres",
-    password: "1qaz2wsx",
-    database: "postgres",
-    host: "mypostgres",
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+    host: process.env.PGHOST,
     port: "5432"
 });
 

@@ -34,7 +34,7 @@ app.get("/games", (req, res) => {
     pgClient.query('select * from games order by 1 desc;', (err, result) => {
         if(err) throw error;
         res.status(200).json(result.rows);
-    })
+    });
 });
 
 app.get("/game/:id", (req, res) => {
@@ -44,14 +44,11 @@ app.get("/game/:id", (req, res) => {
         
         pgClient.query('select * from games where id = $1;', [id], (err, result) => {
             if(err) throw error;
-
             const rows = JSON.stringify(result.rows);
-            console.log(`id: ${id}, data: ${rows}`);
-
-            return res.status(200).send({
+            res.status(200).send({
                 data: JSON.parse(rows),
-                msg: 'Server.'
-            })
+                msg: 'OK.'
+            });
         });
     } catch (error) {
         console.log(error);

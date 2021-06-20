@@ -6,7 +6,7 @@ import GetAll from './GetAll.js';
 import GetById from './GetById.js';
 import AddGame from './AddGame.js';
 import DeleteById from './DeleteById.js';
-import UpdateNameById from './UpdateNameById.js';
+import UpdateGameById from './UpdateGameById.js';
 
 function App() {
 
@@ -34,7 +34,7 @@ function App() {
       <GetById handlerParentChange={setGames} />
       <AddGame handlerParentChange={setGames} />
       <DeleteById handlerParentChange={setGames} />
-      <UpdateNameById handlerParentChange={setGames} />
+      <UpdateGameById handlerParentChange={setGames} />
     </div>
   );
 

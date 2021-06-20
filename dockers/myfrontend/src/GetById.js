@@ -4,8 +4,9 @@ import axios from 'axios';
 const GetById = (props) => {
 
 	function getGameById() {
-		let gameId = prompt('Podaj id gry:');
-		if (gameId == null) { return };
+		let gameId = parseInt(prompt('Podaj id gry:'));
+		if (gameId == null) { return; }
+		if (isNaN(Number(gameId))) { alert(`Podana wartość ${gameId} nie jest liczbą całkowitą dodatnią.`); return; }
 		axios.get(`/api/game/${gameId}`)
 			.then(response => response)
 			.then(data => props.handlerParentChange(data.data.data))

@@ -12,13 +12,13 @@ kubectl apply -f myredis-deployment.yml
 -- Backend
 kubectl apply -f mybackend-clusterip.yml 
 kubectl apply -f mybackend-deployment.yml
-#kubectl apply -f mybackend-node-port.yml
+kubectl apply -f mybackend-node-port.yml #
 -- Frontend (Nginx)
 kubectl apply -f mynginx-clusterip.yml 
 kubectl apply -f mynginx-deployment.yml
-#kubectl apply -f mynginx-node-port.yml
+kubectl apply -f mynginx-node-port.yml #
 -- for Ingress
-#kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/cloud/deploy.yaml 
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/cloud/deploy.yaml #
 -- Ingress
 kubectl apply -f myingress.yml 
 

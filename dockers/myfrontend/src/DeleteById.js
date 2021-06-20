@@ -4,8 +4,9 @@ import axios from 'axios';
 const DeleteById = (props) => {
 
 	function deleteGameById() {
-		let gameId = prompt('Podaj id gry:');
-		if (gameId == null) { return };
+		let gameId = parseInt(prompt('Podaj id gry:'));
+		if (gameId == null) { return; }
+		if (isNaN(Number(gameId))) { alert(`Podana wartość ${gameId} nie jest liczbą całkowitą dodatnią.`); return; }
 		axios.delete(`/api/game/${gameId}`)
 			.then(response => response)
 			.catch(error => console.log(error));

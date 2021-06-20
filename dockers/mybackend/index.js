@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require('cors');
 const redis = require("redis");
+const { v4: uuidv4 } = require('uuid'); 
+const serverId = uuidv4();
 
 const app = express();
 
@@ -45,6 +47,10 @@ pgClient
 
 app.get('/', (req, res) => {
     res.send("Welcome! Devipod server is running!");
+});
+
+app.get('/server', (req, res) => {
+    res.send(`Server uuid: ${serverId}`);
 });
 
 app.get("/games", (req, res) => {
@@ -121,9 +127,9 @@ app.delete('/game/:id', (req, res) => {
 app.put('/game/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const textId = `/game/:${id}`;
-    const { name } = req.body;
+    const { name, price } = req.body;
 
-    pgClient.query(`update games set name = $1 where id = ${id};`, [name], (err, result) => {
+    pgClient.query(`update games set name = $1, price = $2 where id = ${id};`, [name, price], (err, result) => {
         if(err) { throw err; }
 
         redisClient.set(textId, JSON.stringify([{id: id, ...req.body}]));

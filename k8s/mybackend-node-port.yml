@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mybackend-node-port
+
+spec:
+  type: NodePort
+  ports:
+    - port: 4000
+      targetPort: 4000
+      nodePort: 31000
+  
+  selector:
+    component: backend 
+    app: myapp

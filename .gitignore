@@ -6,11 +6,6 @@ node_modules
 # production
 /build
 
-# test
-/k8s
-/mynginx
-/mynginx2
-
 # database
 /postgresdata
 /k8spv

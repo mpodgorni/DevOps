@@ -7,14 +7,13 @@ import GetById from './GetById.js';
 import AddGame from './AddGame.js';
 import DeleteById from './DeleteById.js';
 import UpdateGameById from './UpdateGameById.js';
+//import ServerUUID from './ServerUUID.js';
 
 function App() {
 
   const [games, setGames] = useState(null);
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div>

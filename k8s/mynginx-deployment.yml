@@ -17,7 +17,7 @@ spec:
       containers:
         - name: mynginx-container
           image: devipod/myfrontend
-  replicas: 3
+  replicas: 1
   selector: 
     matchLabels: 
       app: myapp

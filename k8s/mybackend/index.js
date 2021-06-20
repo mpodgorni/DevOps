@@ -13,16 +13,16 @@ app.use(express.urlencoded({ extended: false }));
 const { Pool } = require('pg');
 const { text } = require("body-parser");
 const pgClient = new Pool({
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
-    host: process.env.POSTGRES_HOST,
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+    host: process.env.PGHOST,
     port: "5432"
 });
 
 const redisClient = redis.createClient({
     host: process.env.REDIS_HOST,
-    port: 6379
+    port: process.env.REDIS_PORT
 });
 
 redisClient.on('connect', () => {
@@ -92,7 +92,7 @@ app.post('/game', (req, res) => {
     const { name, price } = req.body;
 
     pgClient.query('insert into games (name, price) values ($1, $2) returning id;', [name, price], (err, result) => {
-        if(err) { throw error; }
+        if(err) { throw err; }
         
         const id = result.rows[0].id;
         const textId = `/game/:${id}`;

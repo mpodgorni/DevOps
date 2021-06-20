@@ -17,7 +17,7 @@ services:
       context: ./mybackend
     volumes: 
       - /opt/app/node_modules 
-      - /Users/michalpodgorni/Docker/mybackend:/opt/app 
+      - /Users/michalpodgorni/DevOps/dockers/mybackend:/opt/app 
     environment: 
       - POSTGRES_PASSWORD=1qaz2wsx 
       - POSTGRES_DB=postgres 
@@ -29,13 +29,13 @@ services:
   mynginx: 
     restart: always
     build: 
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./mynginx
     ports: 
       - '9090:80'
   myfrontend:
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./myfrontend
     volumes:
       - /opt/app/node_modules

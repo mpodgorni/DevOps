@@ -1,4 +1,11 @@
 # START #
+-- Backend
+docker build ./mybackend -t devipod/mybackend
+docker push devipod/mybackend
+-- Frontend
+docker build ./myfrontend -t devipod/myfrontend
+docker push devipod/myfrontend
+
 -- Postgres
 kubectl apply -f pv-local.yml 
 kubectl apply -f mypostgres-pvc.yml
